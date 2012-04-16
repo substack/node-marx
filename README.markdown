@@ -7,8 +7,6 @@ abilities.
 example
 =======
 
-work.js
-
 ``` js
 var marx = require('marx');
 
@@ -19,10 +17,12 @@ var shares = marx(workers, work);
 console.dir(shares);
 ```
 
-output
+output:
 
 ```
-$ node work.js
+{ c: { web: 1, auth: 2 },
+  b: { web: 1 },
+  a: { web: 1, logger: 1 } }
 ```
 
 methods
@@ -35,4 +35,22 @@ var marx = require('marx')
 marx(workers, work)
 -------------------
 
-Return an object which how many of each type of work each worker should perform.
+Take an object mapping worker names to role capacity and an object mapping
+work names to a number of instances.
+
+Return an object mapping worker names to objects mapping how many of each type
+of work each worker should perform.
+
+install
+=======
+
+With [npm](http://npmjs.org) do:
+
+```
+npm install marx
+```
+
+license
+=======
+
+MIT
