@@ -41,6 +41,9 @@ work names to a number of instances.
 Return an object mapping worker names to objects mapping how many of each type
 of work each worker should perform.
 
+If the workers don't have enough capacity to do the work, the extra work will
+appear in an `'_overflow'` key in the result.
+
 install
 =======
 
