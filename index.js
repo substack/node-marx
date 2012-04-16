@@ -1,6 +1,8 @@
 module.exports = function (workers, work) {
     var shares = {};
-    var jobs = Object.keys(work);
+    var jobs = Object.keys(work).sort(function (a, b) {
+        return work[a] - work[b];
+    });
     
     jobs.forEach(function (job) {
         for (var n = work[job]; n > 0; n--) {

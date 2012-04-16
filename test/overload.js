@@ -16,7 +16,7 @@ test('overloaded', function (t) {
         t.ok(n <= workers[worker]);
     });
     
-    t.equal(shares._overflow, { web : 18 });
+    t.same(shares._overflow, { web : 18 });
     
     t.end();
 });
