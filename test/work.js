@@ -1,17 +1,6 @@
 var test = require('tap').test;
 var marx = require('../');
-
-function totals (shares) {
-    var totals = {};
-    
-    Object.keys(shares).forEach(function (worker) {
-        Object.keys(shares[worker]).forEach(function (job) {
-            totals[job] = (totals[job] || 0) + shares[worker][job];
-        });
-    });
-    
-    return totals;
-}
+var totals = require('./lib/totals');
 
 test('simple workload', function (t) {
     var work = { web : 3, auth : 2, logger : 1 };
