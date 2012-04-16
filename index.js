@@ -4,14 +4,29 @@ module.exports = function (workers, work) {
         return work[a] - work[b];
     });
     
-    jobs.forEach(function (job) {
-        for (var n = work[job]; n > 0; n--) {
-            var id = mostIdle(workers, shares) || '_overflow';
-            
-            if (!shares[id]) shares[id] = {};
-            shares[id][job] = (shares[id][job] || 0) + 1;
+    var total = jobs.reduce(function (sum, job) {
+        return sum + work[job];
+    }, 0);
+    
+    var pendingJobs = jobs.slice();
+    var allocated = jobs.reduce(function (acc, job) {
+        acc[job] = 0;
+        return acc;
+    }, {});
+    
+    for (var i = total - 1; i >= 0; i--) {
+        var job = pendingJobs[i % pendingJobs.length];
+        var id = mostIdle(workers, shares) || '_overflow';
+        
+        if (!shares[id]) shares[id] = {};
+        shares[id][job] = (shares[id][job] || 0) + 1;
+        
+        allocated[job] ++;
+        if (allocated[job] === work[job]) {
+            var ix = pendingJobs.indexOf(job);
+            pendingJobs.splice(ix, 1);
         }
-    });
+    }
     
     return shares;
 };
