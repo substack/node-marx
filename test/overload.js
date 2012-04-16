@@ -16,7 +16,13 @@ test('overloaded inequality', function (t) {
         t.ok(n <= workers[worker]);
     });
     
-    t.same(shares._overflow, { web : 18 });
+    t.same(Object.keys(shares._overflow).sort(), [ 'auth', 'web' ]);
+    t.equal(
+        Object.keys(shares._overflow).reduce(function (sum, job) {
+            return sum + shares._overflow[job];
+        }, 0),
+        18
+    );
     
     t.end();
 });
