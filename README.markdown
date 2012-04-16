@@ -22,9 +22,9 @@ console.dir(shares);
 output:
 
 ```
-{ c: { web: 1, auth: 2 },
-  b: { web: 1 },
-  a: { web: 1, logger: 1 } }
+{ c: { web: 2, auth: 1 },
+  b: { auth: 1 },
+  a: { logger: 1, web: 1 } }
 ```
 
 methods
