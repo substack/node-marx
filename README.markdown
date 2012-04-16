@@ -4,6 +4,8 @@ marx
 Allocate worker roles among a collective of workers according to their
 abilities.
 
+[![build status](https://secure.travis-ci.org/substack/node-marx.png)](http://travis-ci.org/substack/node-marx)
+
 example
 =======
 
