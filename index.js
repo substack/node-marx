@@ -1,6 +1,6 @@
 module.exports = function (workers, work) {
     var shares = {};
-    var jobs = Object.keys(work).sort(function (a, b) {
+    var jobs = Object.keys(work).sort().sort(function (a, b) {
         return work[a] - work[b];
     });
     
@@ -32,7 +32,7 @@ module.exports = function (workers, work) {
 };
 
 function mostIdle (workers, usage) {
-    var load = Object.keys(workers).reduce(function (acc, id) {
+    var load = Object.keys(workers).sort().reduce(function (acc, id) {
         var procs = Object.keys(usage[id] || {})
             .reduce(function (sum, job) {
                 return sum + ((usage[id] || {})[job] || 0);
